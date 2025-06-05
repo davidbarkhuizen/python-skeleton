@@ -1,4 +1,4 @@
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 import json
 from typing import Type
 from dacite import from_dict
@@ -11,7 +11,7 @@ class LogConfig:
 
 @dataclass
 class Config:
-    log: LogConfig = LogConfig()
+    log: LogConfig = field(default_factory=lambda: LogConfig())
 
 def load_config_from_json_file(json_file_path: str, data_class_type: Type[dataclass]) -> dict:
     
