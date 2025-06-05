@@ -1,0 +1,59 @@
+#! /env/bin/bash
+
+option="$1"
+shift 1
+
+clean () {
+
+    sudo find . -exec touch {} +
+}
+
+install () {
+
+    python -m venv .venv
+
+    source .venv/bin/activate
+
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
+
+    deactivate
+}
+
+enter () {
+
+    source .venv/bin/activate
+    python src/entrypoint.py "$@"
+    deactivate
+}
+
+usage () {
+    echo "-----------------------------------------------"
+    echo "yolo"
+    echo "-----------------------------------------------"
+    echo "2025"
+    echo "david barkhuizen"
+    echo "-----------------------------------------------"
+    echo "usage:"
+    echo
+    echo ". cli [ clean | install | run ]"
+}
+
+case "$option" in
+
+    clean)
+        clean "$@"
+    ;;
+
+    install)
+        install
+    ;;
+
+    run)        
+        enter "$@" 
+    ;;
+
+    *)
+        usage
+    ;;
+esac
