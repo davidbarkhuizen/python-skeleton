@@ -31,9 +31,6 @@ usage () {
     echo "-----------------------------------------------"
     echo "yolo"
     echo "-----------------------------------------------"
-    echo "2025"
-    echo "david barkhuizen"
-    echo "-----------------------------------------------"
     echo "usage:"
     echo
     echo ". cli [ clean | install | run ]"
@@ -49,8 +46,8 @@ case "$option" in
         install
     ;;
 
-    run)        
-        enter "$@" 
+    run)
+        enter "$@"
     ;;
 
     *)
